@@ -1,8 +1,11 @@
 import requests
 import os
+
+jina_api_key = "<YOUR_JINA_API_KEY>"
+
 class JinaReader():
     def __init__(self):
-        api_key = os.getenv("JINA_API")
+        api_key = jina_api_key
         self.headers = {
             "Authorization": f"Bearer {api_key}",
             "Accept": "application/json",

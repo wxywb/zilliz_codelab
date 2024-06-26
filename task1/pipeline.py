@@ -5,15 +5,21 @@ from requests_toolbelt import MultipartEncoder
 import requests
 import random
 
+
+project_id = "<YOUR_ZILLIZ_PROJECT_ID>"
+cluster_id = "<YOUR_ZILLIZ_CLUSTER_ID>"
+api_key = "<YOUR_ZILLIZ_TOKEN>"
+
+
 class ZillizConfig:
     def __init__(self,
         project_id: str = None,
         cluster_id: str = None,
         api_key: str = None,
         cloud_region: str = "ali-cn-hangzhou"):
-        self.project_id = os.getenv("ZILLIZ_PROJECT_ID") or project_id 
-        self.cluster_id = os.getenv("ZILLIZ_CLUSTER_ID") or cluster_id
-        self.api_key = os.getenv("ZILLIZ_TOKEN") or api_key
+        self.project_id = project_id 
+        self.cluster_id = cluster_id
+        self.api_key = api_key
         self.cloud_region = cloud_region
 
 def list_pipelines(cfg, collection_name: str):
