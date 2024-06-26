@@ -8,7 +8,7 @@ import random
 
 project_id = "<YOUR_ZILLIZ_PROJECT_ID>"
 cluster_id = "<YOUR_ZILLIZ_CLUSTER_ID>"
-api_key = "<YOUR_ZILLIZ_TOKEN>"
+api_key = "<YOUR_ZILLIZ_API_KEY>"
 
 
 class ZillizConfig:
@@ -278,12 +278,13 @@ class Pipeline():
         return response_dict["data"]
 
 if __name__ == '__main__':
-    config = ZillizConfig()
+    config = ZillizConfig(project_id, cluster_id, api_key)
     pipeline_ids = list_pipelines(config, "demo")
     if len(pipeline_ids) != 0:
         ppl = Pipeline(config, pipeline_ids)
     else:
-        ppl = create_pipelines(config, "demo")
+        ppl_ids = create_pipelines(config, "demo")
+        ppl = Pipeline(config, ppl_ids)
     
     if os.path.exists("ml_corpus.txt") is False:
         print("请先生成ml_corpus.txt")

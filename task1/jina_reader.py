@@ -4,7 +4,7 @@ import os
 jina_api_key = "<YOUR_JINA_API_KEY>"
 
 class JinaReader():
-    def __init__(self):
+    def __init__(self, jina_api_key):
         api_key = jina_api_key
         self.headers = {
             "Authorization": f"Bearer {api_key}",
@@ -22,7 +22,7 @@ class JinaReader():
         url = f"https://s.jina.ai/ {query}"
         return requests.get(url, self.headers).text
 if __name__ == '__main__':         
-    r = JinaReader()
+    r = JinaReader(jina_api_key)
     papers = []
     papers.append("https://arxiv.org/pdf/1512.03385")
     papers.append("https://arxiv.org/pdf/1706.03762")
